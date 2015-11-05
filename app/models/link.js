@@ -2,12 +2,20 @@ var db = require('../config');
 var crypto = require('crypto');
 var mongoose = require('mongoose')
 
-var Link = db.Model.extend({
-  tableName: 'urls',
-  hasTimestamps: true,
-  defaults: {
-    visits: 0
-  },
+// var Link = db.Model.extend({
+//   tableName: 'urls',
+//   hasTimestamps: true,
+//   defaults: {
+//     visits: 0
+//   },
+
+var urlsSchema = mongoose.schema ({
+    url: String,
+    base_url: String,
+    code: String,
+    title: String,
+    visits: String; 
+})
   initialize: function(){
     this.on('creating', function(model, attrs, options){
       var shasum = crypto.createHash('sha1');

@@ -2,22 +2,22 @@ var mongoose = require('mongoose');
 var Bookshelf = require('bookshelf');
 var path = require('path');
 
-var port = process.env.MONGODB || process.env.MONGOLAB_URI || 'mongodb://localhost:27017/test'
-mongoose.connect(port);
-var db = mongoose.connection;
+// var port = process.env.MONGODB || process.env.MONGOLAB_URI || 'mongodb://localhost:27017/test'
+// mongoose.connect(port);
+var db = mongoose.connect('mongodb://localhost:27017/test');
 
-var usersSchema = mongoose.schema ({
-    username: String,
-    password: String
-})
+// var usersSchema = mongoose.schema ({
+//     username: { type: String, unique: true, required: true },
+//     password: {type: String, required: true }
+// })
 
-var urlsSchema = mongoose.schema ({
-    url: String,
-    base_url: String,
-    code: String,
-    title: String,
-    visits: String; 
-})
+// var urlsSchema = mongoose.schema ({
+//     url: String,
+//     base_url: String,
+//     code: String,
+//     title: String,
+//     visits: String; 
+// })
 // var db = Bookshelf.initialize({
 //   client: 'sqlite3',
 //   connection: {
