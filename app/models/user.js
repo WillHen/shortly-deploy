@@ -23,8 +23,9 @@ usersSchema.pre('save', function(next) {
     return cipher(this.get('password'), null, null).bind(this)
       .then(function(hash) {
         this.set('password', hash);
+        console.log("This is the entry....",this)
+        next();
       });
-      next();
 });
   usersSchema.methods.comparePassword = function(attemptedPassword, callback) {
     bcrypt.compare(attemptedPassword, this.get('password'), function(err, isMatch) {

@@ -2,8 +2,9 @@ var mongoose = require('mongoose');
 var Bookshelf = require('bookshelf');
 var path = require('path');
 
-var host = process.env.MONGODB || process.env.MONGOLAB_URI || 'mongodb://localhost:27017/'
+// var host = process.env.MONGODB || process.env.MONGOLAB_URI || 'mongodb://localhost:27017/'
 // mongoose.connect(port);
+console.log("Maybe connected?????")
 var db = mongoose.connect('mongodb://localhost:27017');
 
 // var usersSchema = mongoose.schema ({
