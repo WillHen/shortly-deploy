@@ -3,14 +3,26 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     concat: {
-        options: {
-        separator: ';',
-      },
-      dist: {
+      //   options: {
+      //   separator: ';',
+      // },
+      // dist: {
         // src: ['src/intro.js', 'src/project.js', 'src/outro.js'],
-        src: ['public/lib/jquery.js', 'public/lib/underscore.js', 'public/lib/backbone.js', 'public/client/**/*.js'],
-        dest: 'public/dist/build.js',
-      },
+        'public/theEntireLib.js' :[   'public/lib/underscore.js', 
+                                    'public/lib/jquery.js', 
+                                  'public/lib/backbone.js', 
+                                  'public/lib/handlebars.js' 
+                                  ],
+        'public/theEntireClient.js' :[ 'public/client/app.js',
+                                      'public/client/router.js',
+                                      'public/client/link.js',
+                                      'public/client/links.js', 
+                                      'public/client/linkView.js', 
+                                      'public/client/linksView.js', 
+                                      'public/client/createLinkView.js' 
+                                      ]
+        
+      //},
     },
 
     mochaTest: {
@@ -29,13 +41,12 @@ module.exports = function(grunt) {
     },
 
     uglify: {
-       options: {
-        banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
-        },
-        build: {
-          src: 'public/dist/build.js',
-          dest: 'public/dist/build.min.js'
+       my_target :{
+        files: {
+            'public/dist/theEntireLib.js' : 'public/theEntireLib.js',
+            'public/dist/theEntireClient.js' : 'public/theEntireClient.js',
         }
+       }
     },
 
     jshint: {
@@ -57,7 +68,7 @@ module.exports = function(grunt) {
       },
       target: {
         files: {
-          'output.min.css': ['public/*.css']
+          'public/output.min.css': ['public/*.css']
         }
       }
     },
@@ -99,9 +110,9 @@ module.exports = function(grunt) {
   grunt.registerTask('server-dev', function (target) {
     // Running nodejs in a different process and displaying output on the main console
     var nodemon = grunt.util.spawn({
-         cmd: 'grunt',
-         grunt: true,
-         args: 'nodemon'
+     cmd: 'grunt',
+     grunt: true,
+     args: 'nodemon'
     });
     nodemon.stdout.pipe(process.stdout);
     nodemon.stderr.pipe(process.stderr);
@@ -117,13 +128,14 @@ module.exports = function(grunt) {
     'mochaTest'
   ]);
 
-  grunt.registerTask('build', ['jshint', 'concat', 'uglify']);
+  grunt.registerTask('build', ['jshint', 'concat', 'uglify', 'cssmin']);
 
   grunt.registerTask('upload', function(n) {
     if(grunt.option('prod')) {
-        } else {
-      grunt.task.run([ 'server-dev' ]);
-    }
+        
+    } else {
+        grunt.task.run([ 'server-dev' ]);
+      }
   });
 
   grunt.registerTask('deploy', [
