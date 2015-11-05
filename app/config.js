@@ -2,9 +2,9 @@ var mongoose = require('mongoose');
 var Bookshelf = require('bookshelf');
 var path = require('path');
 
-// var port = process.env.MONGODB || process.env.MONGOLAB_URI || 'mongodb://localhost:27017/test'
+var host = process.env.MONGODB || process.env.MONGOLAB_URI || 'mongodb://localhost:27017/'
 // mongoose.connect(port);
-var db = mongoose.connect('mongodb://localhost:27017/test');
+var db = mongoose.connect('mongodb://localhost:27017');
 
 // var usersSchema = mongoose.schema ({
 //     username: { type: String, unique: true, required: true },
