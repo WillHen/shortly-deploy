@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 mongoURI = process.env.CUSTOMCONNSTR_MONGOLAB_URI || 'mongodb://localhost/shortlydb';
-mongoose.connect('pwWwZi6cISqnbnH5TK6W51Gzudx.OqJYWtCrlBGCSfk-@ds052408');
+mongoose.connect(mongoURI);
 
 // Run in seperate terminal window using 'mongod'
 var db = mongoose.connection;
