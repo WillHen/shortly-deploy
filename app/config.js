@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
-
-mongoURI = process.env.CUSTOMCONNSTR_MONGOLAB_URI || 'mongodb://localhost/shortlydb';
+console.log("This is the mongoLab key hopefully.....", process.env.CUSTOMCONNSTR_MONGOLAB_URI)
+var mongoURI = process.env.CUSTOMCONNSTR_MONGOLAB_URI || 'mongodb://localhost/shortlydb';
 mongoose.connect(mongoURI);
 
 // Run in seperate terminal window using 'mongod'
