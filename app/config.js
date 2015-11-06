@@ -1,11 +1,16 @@
 var mongoose = require('mongoose');
-var Bookshelf = require('bookshelf');
-var path = require('path');
 
-// var host = process.env.MONGODB || process.env.MONGOLAB_URI || 'mongodb://localhost:27017/'
-// mongoose.connect(port);
-console.log("Maybe connected?????")
-var db = mongoose.connect('mongodb://localhost:27017');
+mongoURI = process.env.CUSTOMCONNSTR_MONGOLAB_URI || 'mongodb://localhost/shortlydb';
+mongoose.connect('pwWwZi6cISqnbnH5TK6W51Gzudx.OqJYWtCrlBGCSfk-@ds052408');
+
+// Run in seperate terminal window using 'mongod'
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function () {
+ console.log('Mongodb connection open');
+});
+
+module.exports = db;
 
 // var usersSchema = mongoose.schema ({
 //     username: { type: String, unique: true, required: true },
@@ -59,5 +64,3 @@ var db = mongoose.connect('mongodb://localhost:27017');
 //     });
 //   }
 // });
-
-module.exports = db;
